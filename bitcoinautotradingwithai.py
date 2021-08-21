@@ -1,11 +1,14 @@
+##시작 CTRL+F5
+##중지 SHIFT+F5
+
 import time
 import pyupbit
 import datetime
 import schedule
 from fbprophet import Prophet
 
-access = "HK1FxxCQigAy7q89bDDg4RmD3CQTi3NrR9epKAkH"
-secret = "dbNHkPDaYYZ6OkgfCyoxzgZBTZgD1u61eyoeQS1P"
+access = "3ON4uTwp6xLSPWlW7KDj3xsWj3t3L5iltqztPytq"
+secret = "IOhw5KQ3EnXknazp7WSxKQxgoLiGFfdZQxeIqQc7"
 
 def get_target_price(ticker, k):
     """변동성 돌파 전략으로 매수 목표가 조회"""
@@ -38,7 +41,7 @@ predicted_close_price = 0
 def predict_price(ticker):
     """Prophet으로 당일 종가 가격 예측"""    ##알트경우 이것또한 원하는 품목으로 수정)
     global predicted_close_price
-    df = pyupbit.get_ohlcv(ticker, interval="minute60")
+    df = pyupbit.get_ohlcv("KRW-BTC", count=1435, period=1)
     df = df.reset_index()
     df['ds'] = df['index']
     df['y'] = df['close']
